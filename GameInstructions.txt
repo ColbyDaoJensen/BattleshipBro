@@ -1,0 +1,17 @@
+                    ___________________________
+                   |  BATTLESHIP INSTRUCTIONS  |
+                    ---------------------------
+
+The map shows like this:
+  X   hits
+  O   misses
+  #   ships (not yet hit)
+
+To enter a location:
+  Enter the row letter and column number with no spaces
+
+  Example: If you enter the words ""
+
+TAKING TURNS:
+  Each turn begins with an anchor screen to give a chance for
+  players to swap places (and keep their boards secret).
