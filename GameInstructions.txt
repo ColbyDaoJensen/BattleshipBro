@@ -10,8 +10,7 @@ The map shows like this:
 To enter a location:
   Enter the row letter and column number with no spaces
 
-  Example: If you enter the words ""
+  Example: If you enter the words "B3", then the map will choose the B row and choose the third column from it.
 
-TAKING TURNS:
-  Each turn begins with an anchor screen to give a chance for
-  players to swap places (and keep their boards secret).
+Play fairly:
+  Each turn has a loading screen to press enter, which is when players must swap and keep their boards secret. Tell your friend to not look at the board until you are shown your friend's board.
