@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.io.File;
 
-public class Game
+public class GameBoard
 {
   //Variables for ships and players.
   private Board[] playerBoards;
@@ -152,3 +152,55 @@ public class Game
     enterToContinue();
   }
 
+  private void nextTurnScreen() throws IOException
+  {
+    file = new Scanner(new File("nextturn.txt"));
+    for(int i = 1; i <= 20; i++)
+    {
+      if(i == 6)
+      {
+        String name = curPlayer.getName();
+        out.print("     |  ");
+        out.print(name + "...");
+        for(int j = 0; j < 14 - name.length(); j++)
+          out.print(" ");
+        out.println("|");
+        file.nextLine();
+      }
+      else
+        out.println(file.nextLine());
+    }
+    out.println("\n");
+    enterToContinue();
+    file.close();
+  }
+  
+  private void gameOverScreen() throws IOException
+  {
+    file = new Scanner(new File("winner.txt"));
+    for(int i = 1; i <= 20; i++)
+    {
+      if(i == 6)
+      {
+        String name = curPlayer.getName();
+        out.print("          |  ");
+        out.print(name + "...");
+        for(int j = 0; j < 14 - name.length(); j++)
+          out.print(" ");
+        out.println("|");
+        file.nextLine();
+      }
+      else
+        out.println(file.nextLine());
+    }
+    file.close();
+  }
+
+  private String enterToContinue()
+  {
+    out.print("Press ENTER to continue... ");
+    String code = keyboard.nextLine();
+    out.println(CLEARSCREEN);
+    return code;
+  }
+}
