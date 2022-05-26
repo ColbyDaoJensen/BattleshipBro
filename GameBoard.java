@@ -106,3 +106,10 @@ public class Game
     enterToContinue();
   }
 
+  private void swapBoards()
+  {
+    Board temp = curPlayer;
+    curPlayer = curOpponent;
+    curOpponent = temp;
+  }
+
