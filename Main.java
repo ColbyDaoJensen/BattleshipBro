@@ -3,6 +3,8 @@ import static java.lang.System.*;
 
 public class Main 
 {
+  //Game is created from the added code.
+  //Game changes screens now.
   public static void main(String[] args) throws IOException
   {
     try
@@ -10,6 +12,8 @@ public class Main
       Game game = new Game();
       game.play();
     }
+
+    //Game clears screen 
     catch(IOException e)
     {
       out.println(Game.CLEARSCREEN);

@@ -1,6 +1,6 @@
-                    ___________________________
-                   |  BATTLESHIP INSTRUCTIONS  |
-                    ---------------------------
+                    ______________________________
+                   |  BattleshipBro Instructions  |
+                    ------------------------------
 
 The map shows like this:
   X   hits
