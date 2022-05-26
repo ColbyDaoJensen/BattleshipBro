@@ -113,3 +113,42 @@ public class Game
     curOpponent = temp;
   }
 
+  private boolean takeTurn() throws IOException
+  {
+    showCurPlayerBoard();
+    out.print("---------- " + curPlayer.getName());
+    out.println("'S TURN ----------\n");
+    curOpponent.printBoardForOpponent();
+    curOpponent.printStatusForOpponent();
+    
+    out.print("Choose a target:\t");
+    String loc = keyboard.nextLine().trim();
+    boolean hit = curOpponent.attack(loc);
+
+    out.println(CLEARSCREEN);
+    out.print("---------- " + loc.toUpperCase() + " IS A ");
+    out.println((hit ? "HIT" : "MISS") + " ----------\n");
+    curOpponent.printBoardForOpponent();
+    curOpponent.printStatusForOpponent();
+
+    out.println();
+    enterToContinue();
+
+    if(curOpponent.allSunk())
+    {
+      gameOverScreen();
+      return true;
+    }
+    return false;
+  }
+
+  private void showCurPlayerBoard()
+  {
+    out.print("---------- " + curPlayer.getName());
+    out.println("'S BOARD ----------\n");
+    curPlayer.printBoardForOwner();
+    curPlayer.printStatusForOwner();
+    out.println();
+    enterToContinue();
+  }
+
