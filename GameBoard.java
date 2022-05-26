@@ -55,3 +55,54 @@ public class Game
     }
   }
 
+  private void setupBoard(int player) throws IOException
+  {
+    out.println("*** PLAYER " + player + " SETUP ***\n");
+    Board curBoard = playerBoards[player-1];
+    boolean orient;
+
+    out.print("Enter your name:\t");
+    curBoard.setName(keyboard.nextLine().trim());
+    out.println();
+
+    //Game board tells you where to place ships.
+    //Game will ask you to place peg horizontal or vertical.
+    //Game will tell you where to put the top leg of the ship anywhere. However,
+    //A wrong position will make you restart the process.
+    for(int i = 0; i < shipNames.length; i++)
+    {
+      curBoard.printBoardForOwner();
+
+      out.print("Place your " + shipNames[i].toUpperCase());
+      out.println(" (" + shipSizes[i] + " pegs)...");
+
+      out.print("Horizontal or vertical? Enter V or H:\t");
+      String choice = keyboard.nextLine().trim();
+      if(choice.equalsIgnoreCase("V"))
+        orient = Board.VERTICAL;
+      else if(choice.equalsIgnoreCase("H"))
+        orient = Board.HORIZONTAL;
+      else
+      {
+        out.println();
+        i--;
+        continue;
+      }
+
+      out.print("Enter location of top/leftmost peg:\t\t");
+      String loc = keyboard.nextLine().trim();
+      if(!curBoard.placeShip(loc, orient, i+1))
+      {
+        out.println();
+        i--;
+        continue;
+      }
+
+      out.println();
+    }
+
+    curBoard.printBoardForOwner();
+    out.println("Player " + curBoard.getName() + " setup complete!");
+    enterToContinue();
+  }
+
