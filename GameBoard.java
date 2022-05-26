@@ -29,3 +29,29 @@ public class Game
     gameOver = false;
   }
 
+  public void play() throws IOException
+  {
+    startScreen();
+
+    if(skipSetup)
+    {
+      playerBoards[0].setName("Player 1");
+      playerBoards[0].presetBoard(1);
+      playerBoards[1].setName("Player 2");
+      playerBoards[1].presetBoard(2);
+    }
+    else
+    {
+      setupBoard(1);
+      setupBoard(2);
+    }
+    
+    while(!gameOver)
+    {
+      nextTurnScreen();
+      gameOver = takeTurn();
+      if(!gameOver)
+        swapBoards();
+    }
+  }
+
