@@ -1,3 +1,5 @@
+//GameBoard class for Battleship
+
 import static java.lang.System.*;
 import java.util.Scanner;
 import java.io.IOException;
@@ -6,8 +8,8 @@ import java.io.File;
 public class GameBoard
 {
   //Variables for ships and players.
-  private Board[] playerBoards;
-  private Board curPlayer, curOpponent;
+  private Actions[] playerBoards;
+  private Actions curPlayer, curOpponent;
   private Scanner keyboard;
   private Scanner file;
   private boolean skipSetup;
@@ -19,9 +21,9 @@ public class GameBoard
   public static final int[] shipSizes = {5, 4, 3, 3, 2};
 
   //Allows board to be playable
-  public Game() throws IOException
+  public GameBoard() throws IOException
   {
-    playerBoards = new Board[]{new Board(), new Board()};
+    playerBoards = new Actions[]{new Actions(), new Actions()};
     curPlayer = playerBoards[0];
     curOpponent = playerBoards[1];
     keyboard = new Scanner(System.in);
@@ -58,7 +60,7 @@ public class GameBoard
   private void setupBoard(int player) throws IOException
   {
     out.println("*** PLAYER " + player + " SETUP ***\n");
-    Board curBoard = playerBoards[player-1];
+    Actions curBoard = playerBoards[player-1];
     boolean orient;
 
     out.print("Enter your name:\t");
@@ -79,9 +81,9 @@ public class GameBoard
       out.print("Horizontal or vertical? Enter V or H:\t");
       String choice = keyboard.nextLine().trim();
       if(choice.equalsIgnoreCase("V"))
-        orient = Board.VERTICAL;
+        orient = Actions.VERTICAL;
       else if(choice.equalsIgnoreCase("H"))
-        orient = Board.HORIZONTAL;
+        orient = Actions.HORIZONTAL;
       else
       {
         out.println();
@@ -108,7 +110,7 @@ public class GameBoard
 
   private void swapBoards()
   {
-    Board temp = curPlayer;
+    Actions temp = curPlayer;
     curPlayer = curOpponent;
     curOpponent = temp;
   }
@@ -196,6 +198,7 @@ public class GameBoard
     file.close();
   }
 
+  //Enter key is used to continue game.
   private String enterToContinue()
   {
     out.print("Press ENTER to continue... ");

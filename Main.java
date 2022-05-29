@@ -9,7 +9,7 @@ public class Main
   {
     try
     {
-      Game game = new Game();
+      GameBoard game = new GameBoard();
       game.play();
     }
 
