@@ -41,5 +41,33 @@ public class Actions
     return name;
   }
 
+  //Places the ship in the location inputted
+  public boolean placeShip(String loc, boolean vert, int type)
+  {
+    loc = loc.trim().toUpperCase();
+    if(!validLocation(loc))
+      return false;
+    int row = loc.charAt(0) - 'A';
+    int col = Integer.parseInt(loc.substring(1)) - 1;
+    if(vert)
+      return placeShipVertical(row, col, type);
+    else
+      return placeShipHorizontal(row, col, type);
+  }
+
+  //Creates the types of ship sizes used for the players.
+  private int shipTypeSize(int type)
+  {
+    switch(type)
+    {
+      case CARRIER:     return 5;
+      case BATTLESHIP:  return 4;
+      case CRUISER:     return 3;
+      case SUBMARINE:   return 3;
+      case DESTROYER:   return 2;
+      default:          return 0;
+    }
+  }
+
   
 }
