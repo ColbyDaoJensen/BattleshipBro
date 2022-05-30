@@ -132,5 +132,62 @@ public class Actions
     return hit;
   }
 
+  //Prints out the opponent's board to show all
+  //hits and misses
+  public void printBoardForOpponent()
+  {
+    out.println("    1 2 3 4 5 6 7 8 9 10");
+    for(int r = 0; r < 10; r++)
+    {
+      out.print((char)(r + 65) + " | ");
+      for(int c = 0; c < 10; c++)
+      {
+        switch(board[r][c])
+        {
+          case MISS:  out.print("O "); break;
+          case HIT:   out.print("X "); break;
+          default:    out.print("~ "); break;
+        }
+      }
+      out.println("|");
+    }
+    out.println();
+  }
+
+  //Prints out the board that shows the player
+  //all of their hits and misses.
+  public void printBoardForOwner()
+  {
+    out.println("    1 2 3 4 5 6 7 8 9 10");
+    for(int r = 0; r < 10; r++)
+    {
+      out.print((char)(r + 65) + " | ");
+      for(int c = 0; c < 10; c++)
+      {
+        switch(board[r][c])
+        {
+          case MISS:
+          case EMPTY: out.print("~ ");  break;
+          case HIT:   out.print("X ");  break;
+          default:    out.print("# ");  break;
+        }
+      }
+      out.println("|");
+    }
+    out.println();
+  }
+
+  //Shows the status of the player currently playing
+  public void printStatusForOwner()
+  {
+    out.println("*** STATUS OF " + name + "'S FLEET ***");
+    for(int i = 0; i < Game.shipNames.length; i++)
+    {
+      out.print(Game.shipNames[i] + ":\t\t");
+      out.println(shipStrengths[i]);
+    }
+    out.println();
+  }
+
   
 }
