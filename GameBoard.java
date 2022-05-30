@@ -33,8 +33,6 @@ public class GameBoard
 
   public void play() throws IOException
   {
-    startScreen();
-
     if(skipSetup)
     {
       playerBoards[0].setName("Player 1");
@@ -156,7 +154,7 @@ public class GameBoard
 
   private void nextTurnScreen() throws IOException
   {
-    file = new Scanner(new File("nextturn.txt"));
+    file = new Scanner(new File("NextTurn.txt"));
     for(int i = 1; i <= 20; i++)
     {
       if(i == 6)
@@ -179,7 +177,7 @@ public class GameBoard
   
   private void gameOverScreen() throws IOException
   {
-    file = new Scanner(new File("winner.txt"));
+    file = new Scanner(new File("YouWin.txt"));
     for(int i = 1; i <= 20; i++)
     {
       if(i == 6)

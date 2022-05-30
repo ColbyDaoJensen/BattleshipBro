@@ -213,7 +213,7 @@ public class Actions
   //Uses boards already set
   public void presetBoard(int player) throws IOException
   {
-    file = new Scanner(new File("presetBoards.txt"));
+    file = new Scanner(new File("PresetBoards.txt"));
     if(player == 2)
       for(int i = 0; i < 10; i++)
         file.nextLine();

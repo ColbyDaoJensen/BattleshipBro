@@ -16,7 +16,7 @@ public class Main
     //Game clears screen 
     catch(IOException e)
     {
-      out.println(Game.CLEARSCREEN);
+      out.println(GameBoard.CLEARSCREEN);
       out.println("Terminated due to IOException:\n");
       out.println(e.getMessage());
     }
