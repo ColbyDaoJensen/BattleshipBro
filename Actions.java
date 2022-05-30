@@ -177,7 +177,7 @@ public class Actions
     out.println();
   }
 
-  //Shows the status of the player currently playing
+  //Shows the status of the player currently playing.
   public void printStatusForOwner()
   {
     out.println("*** STATUS OF " + name + "'S FLEET ***");
@@ -187,6 +187,27 @@ public class Actions
       out.println(shipStrengths[i]);
     }
     out.println();
+  }
+
+  //Shows the status of the opponent currently playing.
+  public void printStatusForOpponent()
+  {
+    out.println("*** STATUS OF " + name + "'S FLEET ***");
+    for(int i = 0; i < Game.shipNames.length; i++)
+    {
+      out.print(Game.shipNames[i] + ":\t\t");
+      out.println(shipStrengths[i] == 0 ? "SUNK" : "in play");
+    }
+    out.println();
+  }
+
+  //Determines if the player won or not.
+  public boolean allSunk()
+  {
+    for(int strength : shipStrengths)
+      if(strength > 0)
+        return false;
+    return true;
   }
 
   
