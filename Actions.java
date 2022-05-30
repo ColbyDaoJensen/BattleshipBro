@@ -89,5 +89,25 @@ public class Actions
     return true;
   }
 
+  //Ships are placed horizontally when the location of
+  //the first leg is inputted, and knows if input
+  //on the board is false so it does not mess up.
+  private boolean placeShipHorizontal(int row, int col, int type)
+  {
+    int size = shipTypeSize(type);
+    if(col + size > board[0].length)
+      return false;
+
+    int checksum = 0;
+    for(int c = col; c < col + size; c++)
+      checksum += board[row][c];
+    if(checksum != EMPTY)
+      return false;
+    
+    for(int c = col; c < col + size; c++)
+      board[row][c] = type;
+    return true;
+  }
+
   
 }
