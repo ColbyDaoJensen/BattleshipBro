@@ -27,7 +27,7 @@ public class Actions
   public Actions()
   {
     board = new int[10][10];
-    shipStrengths = Arrays.copyOf(Game.shipSizes, Game.shipSizes.length);
+    shipStrengths = Arrays.copyOf(GameBoard.shipSizes, GameBoard.shipSizes.length);
   }
 
   //Sets the usernames for the players.
@@ -181,9 +181,9 @@ public class Actions
   public void printStatusForOwner()
   {
     out.println("*** STATUS OF " + name + "'S FLEET ***");
-    for(int i = 0; i < Game.shipNames.length; i++)
+    for(int i = 0; i < GameBoard.shipNames.length; i++)
     {
-      out.print(Game.shipNames[i] + ":\t\t");
+      out.print(GameBoard.shipNames[i] + ":\t\t");
       out.println(shipStrengths[i]);
     }
     out.println();
@@ -192,10 +192,10 @@ public class Actions
   //Shows the status of the opponent currently playing.
   public void printStatusForOpponent()
   {
-    out.println("*** STATUS OF " + name + "'S FLEET ***");
-    for(int i = 0; i < Game.shipNames.length; i++)
+    out.println("The status of " + name + "'s fleet");
+    for(int i = 0; i < GameBoard.shipNames.length; i++)
     {
-      out.print(Game.shipNames[i] + ":\t\t");
+      out.print(GameBoard.shipNames[i] + ":\t\t");
       out.println(shipStrengths[i] == 0 ? "SUNK" : "in play");
     }
     out.println();
@@ -210,5 +210,22 @@ public class Actions
     return true;
   }
 
-  
+  //Uses boards already set
+  public void presetBoard(int player) throws IOException
+  {
+    file = new Scanner(new File("presetBoards.txt"));
+    if(player == 2)
+      for(int i = 0; i < 10; i++)
+        file.nextLine();
+    for(int r = 0; r < board.length; r++)
+      for(int c = 0; c < board[0].length; c++)
+        board[r][c] = file.nextInt();
+    file.close();
+  }
+
+  //Checks validity of location
+  public static boolean validLocation(String loc)
+  {
+    return loc.matches("[A-Ja-j]\\d0?");
+  }
 }
