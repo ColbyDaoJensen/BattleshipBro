@@ -1,29 +1,30 @@
-//GameBoard class for Battleship
+//Game class for Battleship
 
 import static java.lang.System.*;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.File;
 
-public class GameBoard
+public class Game
 {
   //Variables for ships and players.
-  private Actions[] playerBoards;
-  private Actions curPlayer, curOpponent;
+  private Board[] playerBoards;
+  private Board curPlayer, curOpponent;
   private Scanner keyboard;
   private Scanner file;
   private boolean skipSetup;
   private boolean gameOver;
 
-  //Sets up ships in the game for players
+  //Sets up ships in the game for players.
   public static final String CLEARSCREEN = "\033[H\033[2J";
-  public static final String[] shipNames = {"Carrier", "Battleship", "Cruiser", "Submarine", "Destroyer"};
+  public static final String[] shipNames = {"Carrier",
+    "Battleship", "Cruiser", "Submarine", "Destroyer"};
   public static final int[] shipSizes = {5, 4, 3, 3, 2};
 
   //Allows board to be playable
-  public GameBoard() throws IOException
+  public Game() throws IOException
   {
-    playerBoards = new Actions[]{new Actions(), new Actions()};
+    playerBoards = new Board[]{new Board(), new Board()};
     curPlayer = playerBoards[0];
     curOpponent = playerBoards[1];
     keyboard = new Scanner(System.in);
@@ -33,6 +34,8 @@ public class GameBoard
 
   public void play() throws IOException
   {
+    startScreen();
+
     if(skipSetup)
     {
       playerBoards[0].setName("Player 1");
@@ -58,7 +61,7 @@ public class GameBoard
   private void setupBoard(int player) throws IOException
   {
     out.println("*** PLAYER " + player + " SETUP ***\n");
-    Actions curBoard = playerBoards[player-1];
+    Board curBoard = playerBoards[player-1];
     boolean orient;
 
     out.print("Enter your name:\t");
@@ -79,9 +82,9 @@ public class GameBoard
       out.print("Horizontal or vertical? Enter V or H:\t");
       String choice = keyboard.nextLine().trim();
       if(choice.equalsIgnoreCase("V"))
-        orient = Actions.VERTICAL;
+        orient = Board.VERTICAL;
       else if(choice.equalsIgnoreCase("H"))
-        orient = Actions.HORIZONTAL;
+        orient = Board.HORIZONTAL;
       else
       {
         out.println();
@@ -108,7 +111,7 @@ public class GameBoard
 
   private void swapBoards()
   {
-    Actions temp = curPlayer;
+    Board temp = curPlayer;
     curPlayer = curOpponent;
     curOpponent = temp;
   }
@@ -152,6 +155,23 @@ public class GameBoard
     enterToContinue();
   }
 
+  private void startScreen() throws IOException
+  {
+    String[] files = {"Welcome.txt", "GameInstructions.txt"};
+    String code = "";
+    for(String fileName : files)
+    {
+      file = new Scanner(new File(fileName));
+      while(file.hasNext())
+        out.println(file.nextLine());
+      out.println("\n");
+      code = enterToContinue();
+      file.close();
+    }
+    if(code.equalsIgnoreCase("skip"))
+      skipSetup = true;
+  }
+
   private void nextTurnScreen() throws IOException
   {
     file = new Scanner(new File("NextTurn.txt"));
@@ -174,7 +194,7 @@ public class GameBoard
     enterToContinue();
     file.close();
   }
-  
+
   private void gameOverScreen() throws IOException
   {
     file = new Scanner(new File("YouWin.txt"));
@@ -196,7 +216,7 @@ public class GameBoard
     file.close();
   }
 
-  //Enter key is used to continue game.
+  //Enter key is used to continue the game.
   private String enterToContinue()
   {
     out.print("Press ENTER to continue... ");

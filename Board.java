@@ -1,4 +1,4 @@
-// Actions Class for Battleship
+// Board Class for Battleship
 
 import static java.lang.System.*;
 import java.util.Arrays;
@@ -6,13 +6,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
-public class Actions
+public class Board
 {
   private String name;
   private int[][] board;
   private int[] shipStrengths;
   private Scanner file;
-  
+
   private final int EMPTY = 0;
   private final int MISS = -1;
   private final int HIT = -2;
@@ -24,10 +24,10 @@ public class Actions
   public static final boolean VERTICAL = true;
   public static final boolean HORIZONTAL = false;
 
-  public Actions()
+  public Board()
   {
     board = new int[10][10];
-    shipStrengths = Arrays.copyOf(GameBoard.shipSizes, GameBoard.shipSizes.length);
+    shipStrengths = Arrays.copyOf(Game.shipSizes, Game.shipSizes.length);
   }
 
   //Sets the usernames for the players.
@@ -35,6 +35,7 @@ public class Actions
   {
     this.name = name.toUpperCase();
   }
+
   //Returns the usernames to use in the game.
   public String getName()
   {
@@ -181,9 +182,9 @@ public class Actions
   public void printStatusForOwner()
   {
     out.println("*** STATUS OF " + name + "'S FLEET ***");
-    for(int i = 0; i < GameBoard.shipNames.length; i++)
+    for(int i = 0; i < Game.shipNames.length; i++)
     {
-      out.print(GameBoard.shipNames[i] + ":\t\t");
+      out.print(Game.shipNames[i] + ":\t\t");
       out.println(shipStrengths[i]);
     }
     out.println();
@@ -192,10 +193,10 @@ public class Actions
   //Shows the status of the opponent currently playing.
   public void printStatusForOpponent()
   {
-    out.println("The status of " + name + "'s fleet");
-    for(int i = 0; i < GameBoard.shipNames.length; i++)
+    out.println("*** STATUS OF " + name + "'S FLEET ***");
+    for(int i = 0; i < Game.shipNames.length; i++)
     {
-      out.print(GameBoard.shipNames[i] + ":\t\t");
+      out.print(Game.shipNames[i] + ":\t\t");
       out.println(shipStrengths[i] == 0 ? "SUNK" : "in play");
     }
     out.println();
