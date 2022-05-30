@@ -109,5 +109,28 @@ public class Actions
     return true;
   }
 
+  //Determines if the player hit or missed the ship
+  public boolean attack(String loc)
+  {
+    loc = loc.trim().toUpperCase();
+    if(!validLocation(loc))
+      return false;
+    int row = loc.charAt(0) - 'A';
+    int col = Integer.parseInt(loc.substring(1)) - 1;
+    if(row < 0 || row > 9 || col < 0 || col > 9)
+      return false;
+    int val = board[row][col];
+    boolean hit = false;
+
+    if(val > 0)
+    {
+      shipStrengths[val-1]--;
+      hit = true;
+    }
+    if(val != HIT && val != MISS)
+      board[row][col] = hit ? HIT : MISS;
+    return hit;
+  }
+
   
 }
