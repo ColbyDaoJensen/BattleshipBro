@@ -69,5 +69,25 @@ public class Actions
     }
   }
 
+  //Ships are placed vertically when the location of
+  //the first leg is inputted, and knows if input
+  //on the board is false so it does not mess up.
+  private boolean placeShipVertical(int row, int col, int type)
+  {
+    int size = shipTypeSize(type);
+    if(row + size > board.length)
+      return false;
+    
+    int checksum = 0;
+    for(int r = row; r < row + size; r++)
+      checksum += board[r][col];
+    if(checksum != EMPTY)
+      return false;
+    
+    for(int r = row; r < row + size; r++)
+      board[r][col] = type;
+    return true;
+  }
+
   
 }
