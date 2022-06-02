@@ -181,7 +181,7 @@ public class Board
   //Shows the status of the player currently playing.
   public void printStatusForOwner()
   {
-    out.println("*** STATUS OF " + name + "'S FLEET ***");
+    out.println("Here is the status of " + name + "'s fleet...");
     for(int i = 0; i < Game.shipNames.length; i++)
     {
       out.print(Game.shipNames[i] + ":\t\t");
@@ -193,7 +193,7 @@ public class Board
   //Shows the status of the opponent currently playing.
   public void printStatusForOpponent()
   {
-    out.println("*** STATUS OF " + name + "'S FLEET ***");
+    out.println("Here is the status of " + name + "'s fleet...");
     for(int i = 0; i < Game.shipNames.length; i++)
     {
       out.print(Game.shipNames[i] + ":\t\t");

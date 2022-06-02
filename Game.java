@@ -32,6 +32,7 @@ public class Game
     gameOver = false;
   }
 
+  //Sets up the players and their board
   public void play() throws IOException
   {
     startScreen();
@@ -58,13 +59,14 @@ public class Game
     }
   }
 
+  //Sets up 
   private void setupBoard(int player) throws IOException
   {
-    out.println("*** PLAYER " + player + " SETUP ***\n");
+    out.println("Player " + player + " setup! \n");
     Board curBoard = playerBoards[player-1];
     boolean orient;
 
-    out.print("Enter your name:\t");
+    out.print("What is your name?\t");
     curBoard.setName(keyboard.nextLine().trim());
     out.println();
 
@@ -79,7 +81,7 @@ public class Game
       out.print("Place your " + shipNames[i].toUpperCase());
       out.println(" (" + shipSizes[i] + " pegs)...");
 
-      out.print("Horizontal or vertical? Enter V or H:\t");
+      out.print("Horizontal or vertical? Enter the letter V or H:\t");
       String choice = keyboard.nextLine().trim();
       if(choice.equalsIgnoreCase("V"))
         orient = Board.VERTICAL;
@@ -92,7 +94,7 @@ public class Game
         continue;
       }
 
-      out.print("Enter location of top/leftmost peg:\t\t");
+      out.print("Where do you want to put your top/leftmost peg?\t\t");
       String loc = keyboard.nextLine().trim();
       if(!curBoard.placeShip(loc, orient, i+1))
       {
@@ -148,7 +150,7 @@ public class Game
   private void showCurPlayerBoard()
   {
     out.print("---------- " + curPlayer.getName());
-    out.println("'S BOARD ----------\n");
+    out.println("'s board ----------\n");
     curPlayer.printBoardForOwner();
     curPlayer.printStatusForOwner();
     out.println();
