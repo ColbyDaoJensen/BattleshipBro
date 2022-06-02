@@ -170,7 +170,11 @@ public class Board
           case MISS:
           case EMPTY: out.print("~ ");  break;
           case HIT:   out.print("X ");  break;
-          default:    out.print("# ");  break;
+          case CARRIER:    out.print("A ");  break;
+          case BATTLESHIP:  out.print("B ");  break;
+          case CRUISER:     out.print("C ");  break;
+          case SUBMARINE:   out.print("D ");  break;
+          case DESTROYER:   out.print("E ");  break;
         }
       }
       out.println("|");
